@@ -1,259 +1,303 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-    <meta name="google-site-verification" content="y9WieK9XhLMMojlJCpy841uXrLVPcrMu02niKfcE0c8" />
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" type="image/gif" href="favicon.gif" />
-    <title>Fergcorp - Engineering and Technology Consulting</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fergcorp</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ece6d8;
+    --card-bg: #faf7f0;
+    --ink: #2a2419;
+    --ink-soft: #756a59;
+    --accent: #9a6a2f;
+    --rule: #d9d0bd;
+    --shadow: rgba(42, 36, 25, 0.16);
+  }
 
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #131110;
+      --card-bg: #1e1b17;
+      --ink: #efe8da;
+      --ink-soft: #a89a83;
+      --accent: #d7a75d;
+      --rule: #3b352b;
+      --shadow: rgba(0, 0, 0, 0.5);
+    }
+  }
 
-    <!-- Custom CSS -->
-    <link href="css/agency.css" rel="stylesheet">
+  :root[data-theme="dark"] {
+    --bg: #131110;
+    --card-bg: #1e1b17;
+    --ink: #efe8da;
+    --ink-soft: #a89a83;
+    --accent: #d7a75d;
+    --rule: #3b352b;
+    --shadow: rgba(0, 0, 0, 0.5);
+  }
 
-    <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+  * { box-sizing: border-box; }
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
 
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 16px;
+    padding-block: max(32px, env(safe-area-inset-top, 0px)) max(32px, env(safe-area-inset-bottom, 0px));
+  }
+
+  .stage {
+    width: 100%;
+    max-width: 440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 26px;
+  }
+
+  .card {
+    position: relative;
+    width: 100%;
+    max-width: 460px;
+    aspect-ratio: 7 / 4;
+    background: var(--card-bg);
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    box-shadow: 0 24px 60px -24px var(--shadow), 0 2px 8px -2px var(--shadow);
+    padding: clamp(18px, 5.5%, 30px) clamp(20px, 6%, 32px);
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: clamp(14px, 4%, 24px);
+    container-type: inline-size;
+  }
+
+  .crop {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: 1px solid var(--rule);
+    opacity: 0.9;
+  }
+  .crop.tl { top: 8px; left: 8px; border-right: none; border-bottom: none; }
+  .crop.br { bottom: 8px; right: 8px; border-left: none; border-top: none; }
+
+  .card-col {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .card-col.brand {
+    flex: 1.05;
+    justify-content: center;
+  }
+
+  .card-col.info {
+    flex: 1;
+    justify-content: space-between;
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .divider {
+    width: 1px;
+    background: var(--rule);
+    flex: none;
+    align-self: stretch;
+  }
+
+  .wordmark {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 500;
+    font-size: clamp(17px, 6.5cqi, 27px);
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+    color: var(--ink);
+  }
+
+  .wordmark em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--accent);
+  }
+
+  .tagline {
+    margin-top: clamp(4px, 1.5%, 8px);
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: clamp(7px, 2cqi, 9.5px);
+    line-height: 1.6;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+
+  .brand-text {
+    width: fit-content;
+    max-width: 100%;
+  }
+
+  .tagline-indent {
+    display: block;
+    text-align: right;
+  }
+
+  .who {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .who .name {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: clamp(12px, 4.2cqi, 16px);
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .who .title {
+    margin-top: 3px;
+    font-size: clamp(8.5px, 2.6cqi, 11px);
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .contact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 3px;
+  }
+
+  .email {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: clamp(7px, 2cqi, 9.5px);
+    letter-spacing: 0.02em;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1px;
+  }
+
+  .email:hover,
+  .email:focus-visible {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .footer {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: clamp(7px, 2cqi, 9.5px);
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+  }
+
+  .caption {
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .caption a {
+    color: var(--ink);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--accent);
+    padding-bottom: 1px;
+  }
+
+  .caption a:hover,
+  .caption a:focus-visible {
+    color: var(--accent);
+  }
+
+  .caption .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+  }
+
+  .caption .status::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex: none;
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .card {
+      animation: rise 0.5s ease-out;
+    }
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
 </head>
+<body>
 
-<body id="page-top" class="index">
+<div class="stage">
+  <div class="card">
+    <span class="crop tl" aria-hidden="true"></span>
+    <span class="crop br" aria-hidden="true"></span>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Fergcorp</a>
-            </div>
+    <div class="card-col brand">
+      <div class="brand-text">
+        <div class="wordmark">Ferg<em>corp</em>, LLC</div>
+        <div class="tagline">Curiosity&hellip;<br><span class="tagline-indent">followed wherever it leads</span></div>
+      </div>
+    </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#services">Services</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#team">Team</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
+    <div class="divider" aria-hidden="true"></div>
 
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="intro-text">
-                <div class="intro-lead-in">Welcome To Fergcorp!</div>
-                <div class="intro-heading">It's Nice To Meet You</div>
-                <a href="#services" class="page-scroll btn btn-xl">Tell Me More</a>
-            </div>
-        </div>
-    </header>
+    <div class="card-col info">
+      <div class="who">
+        <div class="name">Andrew Ferguson</div>
+        <div class="title">Founder &amp; Chief Tinkering Officer</div>
+      </div>
+      <div class="contact">
+        <a class="email" href="mailto:andrew@fergcorp.com">andrew@fergcorp.com</a>
+        <div class="footer">fergcorp.com</div>
+      </div>
+    </div>
+  </div>
 
-    <!-- Services Section -->
-    <section id="services">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Services</h2>
-                    <h3 class="section-subheading text-muted">How can we help?</h3>
-                </div>
-            </div>
-            <div class="row text-center">
-                <div class="col-md-4">
-                    <span class="fa-stack fa-4x">
-                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fa fa-road fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <h4 class="service-heading">CTO On-Demand</h4>
-                    <p class="text-muted">Goal &rarr; Strategy &rarr; Action.<br />You want to grow your company, but you need help figuring out what technology you need to compete effectively. You don't need a full-time person, just someone to help you plot your strategy and perhaps help you oversee the successful execution...let us help you define the why, how, and what.</p>
-                </div>
-                <div class="col-md-4">
-                    <span class="fa-stack fa-4x">
-                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fa fa-wrench fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <h4 class="service-heading">Engineering Infusion</h4>
-                    <p class="text-muted">With over a decade of experience in the technology and aerospace industry, we have the knowledge you need from development through to production handover.</p>
-                </div>
-                <div class="col-md-4">
-                    <span class="fa-stack fa-4x">
-                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fa fa-support fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <h4 class="service-heading">Technology Consulting</h4>
-                    <p class="text-muted">Whether the issue is your email isn't working and the usual person doesn't know what's wrong, or you want someone to help you setup your first website right: we're here to get you past the finish line. We know technology can feel complicated, so we work with you <em>on-site</em> to help guide you every step of the way. </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team Section -->
-    <section id="team" class="bg-light-gray">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Our Amazing Team</h2>
-                    <h3 class="section-subheading text-muted">...of one</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="team-member">
-                        <img src="img/team/andrew.jpg" class="img-responsive img-circle" alt="Andrew Ferguson">
-                        <h4>Andrew Ferguson, PE</h4>
-                        <p class="large text-muted">Chief Engineer</p>
-			<p class="text-muted text-justify">Andrew has over a decade of experience in the technology and aerospace industry, with a background in electrical, mechanical, and computing systems. Andrew is also a registered Professional Electrical Engineer in the State of Washington.
-                        <ul class="list-inline social-buttons">
-                            <li><a href="https://twitter.com/andrewferguson"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li><a href="https://github.com/fergbrain"><i class="fa fa-github"></i></a>
-                            </li>
-                            <li><a href="https://www.linkedin.com/in/fergusonandrew"><i class="fa fa-linkedin"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-		</div>
-                <div class="col-sm-4">
-			<div class="col-lg-8 col-lg-offset-2 text-left">
-	                    <p class="large text-muted text-justify">The team at Fergcorp has extensive experience in the following:</p>
-       	                	 <ul class="text-muted text-left">
-       	                         <li>Mission computing systems</li>
-       	                         <li>High availibility networks</li>
-       	                         <li>Off-board line-of-site communication systems</li>
-				 <li>Web site development and deployment</li>
-       	        	         </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-	<section id="contact">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Contact Us</h2>
-					<h2 class="section-subheading"><a href="mailto:andrew@fergcorp.com">andrew@fergcorp.com</a></h2>
-                    <h3 class="section-subheading text-muted">All requests are viewed by a real human!</h3>
-                </div>
-            </div>
-            <div class="row invisible">
-                <div class="col-lg-12">
-                    <form name="sentMessage" id="contactForm" novalidate>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Your Name *" id="name" required data-validation-required-message="Please enter your name.">
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Your Email *" id="email" required data-validation-required-message="Please enter your email address.">
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="form-group">
-                                    <input type="tel" class="form-control" placeholder="Your Phone *" id="phone" required data-validation-required-message="Please enter your phone number.">
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <textarea class="form-control" placeholder="Your Message *" id="message" required data-validation-required-message="Please enter a message."></textarea>
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                            <div class="col-lg-12 text-center">
-                                <div id="success"></div>
-                                <button type="submit" class="btn btn-xl">Send Message</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <span class="copyright">Copyright &copy; Fergcorp, 
-LLC 1995&mdash;2020</span>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-    <script src="js/classie.js"></script>
-    <script src="js/cbpAnimatedHeader.js"></script>
-
-    <!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="js/agency.js"></script>
-
-
-<!-- Piwik -->
-<script type="text/javascript">
-  var _paq = _paq || [];
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u="//stats.ferguson.pw/piwik/";
-    _paq.push(['setTrackerUrl', u+'piwik.php']);
-    _paq.push(['setSiteId', 10]);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<noscript><p><img src="//stats.ferguson.pw/piwik/piwik.php?idsite=10" style="border:0;" alt="" /></p></noscript>
-<!-- End Piwik Code -->
-
+  <p class="caption">
+    Currently building
+    <a href="https://dialapodcast.com" target="_blank" rel="noopener">Dial-a-Podcast</a>
+    &mdash; <span class="status">not accepting new clients</span>
+  </p>
+</div>
 
 </body>
-
 </html>
